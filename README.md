@@ -40,6 +40,10 @@ For full documentation, visit [docs.rs/shuttle-service](https://docs.rs/shuttle-
 - [GitHub Issues](https://github.com/getsynth/shuttle/issues). Best for: bugs and errors you encounter using Shuttle.
 - [Discord](https://discord.gg/H33rRDTm3p). Best for: sharing your applications and hanging out with the community.
 
+## Contributing
+
+Shuttle is a community-driven project and welcomes contributions of any kind. Start by reading our [contributing guide][contributing]!
+
 ## Status
 
 - [x] Alpha: We are testing shuttle, API and deployments may be unstable
@@ -48,3 +52,6 @@ For full documentation, visit [docs.rs/shuttle-service](https://docs.rs/shuttle-
 - [ ] Public: Production-ready!
 
 We are currently in Alpha. Watch "releases" of this repo to get notified of major updates!
+
+
+[contributing]: https://github.com/tokio-rs/axum/blob/main/CONTRIBUTING.md
