@@ -457,20 +457,20 @@ where
 #[cfg(feature = "web-poem")]
 pub type ShuttlePoem<T> = Result<T, Error>;
 
-#[cfg(feature = "web-axum")]
-#[async_trait]
-impl Service for sync_wrapper::SyncWrapper<axum::Router> {
-    async fn bind(mut self: Box<Self>, addr: SocketAddr) -> Result<(), error::Error> {
-        let router = self.into_inner();
+//#[cfg(feature = "web-axum")]
+//#[async_trait]
+//impl Service for sync_wrapper::SyncWrapper<axum::Router> {
+//async fn bind(mut self: Box<Self>, addr: SocketAddr) -> Result<(), error::Error> {
+//let router = self.into_inner();
 
-        axum::Server::bind(&addr)
-            .serve(router.into_make_service())
-            .await
-            .map_err(error::CustomError::new)?;
+//axum::Server::bind(&addr)
+//.serve(router.into_make_service())
+//.await
+//.map_err(error::CustomError::new)?;
 
-        Ok(())
-    }
-}
+//Ok(())
+//}
+//}
 
 #[cfg(feature = "web-axum")]
 pub type ShuttleAxum = Result<sync_wrapper::SyncWrapper<axum::Router>, Error>;
@@ -504,7 +504,7 @@ where
     T::Future: std::future::Future + Send + Sync,
 {
     async fn bind(mut self: Box<Self>, addr: SocketAddr) -> Result<(), error::Error> {
-        let shared = tower::make::Shared::new(self);
+        let shared = tower::make::Shared::new(self); // Could probably be a make_serivice_function()
         hyper::Server::bind(&addr)
             .serve(shared)
             .await

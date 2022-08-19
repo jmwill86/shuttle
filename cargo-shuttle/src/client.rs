@@ -141,6 +141,9 @@ pub(crate) async fn deploy(
     let mut url = api_url.clone();
     let _ = write!(url, "/projects/{}", project.as_str());
 
+    //panic!("{}", url);
+    //http://localhost:8002/projects/hello-world-axum-app
+
     let client = get_retry_client();
 
     let mut package_file = package_file;

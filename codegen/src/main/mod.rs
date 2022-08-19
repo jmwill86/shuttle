@@ -26,12 +26,13 @@ pub(crate) fn r#impl(_attr: TokenStream, item: TokenStream) -> TokenStream {
 
         #[no_mangle]
         pub extern "C" fn _create_service() -> *mut shuttle_service::Bootstrapper {
+            // Output T implements Service
             let builder: shuttle_service::StateBuilder<Box<dyn shuttle_service::Service>> =
                 |factory, runtime, logger| Box::pin(__shuttle_wrapper(factory, runtime, logger));
 
             let bootstrapper = shuttle_service::Bootstrapper::new(
-                builder,
-                __binder,
+                builder, // State builder. Uses Factory to instatiate Service
+                __binder, // ShuttleService, addr, Tokio Runtime
                 shuttle_service::Runtime::new().unwrap(),
             );
 

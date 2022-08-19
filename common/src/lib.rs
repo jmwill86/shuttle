@@ -17,7 +17,7 @@ use crate::project::ProjectName;
 pub const SHUTTLE_PROJECT_HEADER: &str = "Shuttle-Project";
 
 #[cfg(debug_assertions)]
-pub const API_URL_DEFAULT: &str = "http://localhost:8001";
+pub const API_URL_DEFAULT: &str = "http://localhost:8002";
 
 #[cfg(not(debug_assertions))]
 pub const API_URL_DEFAULT: &str = "https://api.shuttle.rs";
