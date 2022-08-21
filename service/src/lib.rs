@@ -518,7 +518,7 @@ where
 
 #[cfg(feature = "web-actix")]
 #[async_trait]
-impl<T> Service for sync_wrapper::SyncWrapper<actix_web::App<T>>
+impl<T> Service for HttpServer<actix_web::App<T>>
 where
     T: Clone + Send + Sync + 'static,
 {
@@ -536,6 +536,6 @@ where
 }
 
 #[cfg(feature = "web-actix")]
-pub type ShuttleActix = Result<sync_wrapper::SyncWrapper<actix_web::App<()>>, Error>;
+pub type ShuttleActix = Result<HttpServer, Error>;
 
 pub const VERSION: &str = env!("CARGO_PKG_VERSION");
