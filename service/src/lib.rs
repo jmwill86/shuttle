@@ -1,10 +1,10 @@
 #![doc(
-    html_logo_url = "https://raw.githubusercontent.com/getsynth/shuttle/main/resources/logo-square-transparent.png",
-    html_favicon_url = "https://raw.githubusercontent.com/getsynth/shuttle/main/resources/favicon.ico"
+    html_logo_url = "https://raw.githubusercontent.com/shuttle-hq/shuttle/main/resources/logo-square-transparent.png",
+    html_favicon_url = "https://raw.githubusercontent.com/shuttle-hq/shuttle/main/resources/favicon.ico"
 )]
 //! # Shuttle - Deploy Rust apps with a single Cargo subcommand
 //! <div style="display: flex; margin-top: 30px; margin-bottom: 30px;">
-//! <img src="https://raw.githubusercontent.com/getsynth/shuttle/main/resources/logo-rectangle-transparent.png" width="400px" style="margin-left: auto; margin-right: auto;"/>
+//! <img src="https://raw.githubusercontent.com/shuttle-hq/shuttle/main/resources/logo-rectangle-transparent.png" width="400px" style="margin-left: auto; margin-right: auto;"/>
 //! </div>
 //!
 //! Hello, and welcome to the <span style="font-family: Sans-Serif;"><a href="https://shuttle.rs">shuttle</a></span> API documentation!
@@ -53,7 +53,7 @@
 //! ```
 //!
 //! See the [shuttle_service::main][main] macro for more information on supported services - such as `axum`.
-//! Or look at more complete examples [in the repository](https://github.com/getsynth/shuttle/tree/main/examples), but
+//! Or look at more complete examples [in the repository](https://github.com/shuttle-hq/shuttle/tree/main/examples), but
 //! take note that the examples may update before official releases.
 //!
 //! ## Running locally
@@ -200,7 +200,7 @@
 //!
 //! If you have any questions, [join our Discord server](https://discord.gg/H33rRDTm3p). There's always someone on there that can help!
 //!
-//! You can also [open an issue or a discussion on GitHub](https://github.com/getsynth/shuttle).
+//! You can also [open an issue or a discussion on GitHub](https://github.com/shuttle-hq/shuttle).
 //!
 
 use std::future::Future;
@@ -264,6 +264,7 @@ extern crate shuttle_codegen;
 /// | `ShuttleAxum`                         | web-axum     | [axum](https://docs.rs/axum/0.5)            | 0.5        | [GitHub](https://github.com/getsynth/shuttle/tree/main/examples/axum/hello-world)   |
 /// | `ShuttleTide`                         | web-tide     | [tide](https://docs.rs/tide/0.16.0)         | 0.16.0     | [GitHub](https://github.com/getsynth/shuttle/tree/main/examples/tide/hello-world)   |
 /// | `ShuttlePoem`                         | web-poem     | [poem](https://docs.rs/poem/1.3.35)         | 1.3.35     | [GitHub](https://github.com/getsynth/shuttle/tree/main/examples/poem/hello-world)   |
+/// | `ShuttleActix`                        | web-actix    | [actix-web](https://docs.rs/actix-web/4.1.0) | 4.1.0      | [GitHub](https://github.com/shuttle-hq/shuttle/tree/main/examples/actix/hello-world)  |
 /// | `Result<T, shuttle_service::Error>`   | web-tower    | [tower](https://docs.rs/tower/0.4.12)       | 0.14.12    | [GitHub](https://github.com/getsynth/shuttle/tree/main/examples/tower/hello-world)  |
 ///
 /// # Getting shuttle managed services
@@ -286,12 +287,12 @@ extern crate shuttle_codegen;
 /// ## shuttle managed dependencies
 /// The following dependencies can be managed by shuttle - remember to enable their feature flags for the `shuttle-service` dependency in `Cargo.toml` and configure them using an attribute annotation:
 ///
-/// | Argument type                                                       | Feature flag      | Attribute            | Dependency                                                                                         | Example                                                                          |
-/// | ------------------------------------------------------------------- | ----------------- | -------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-/// | [`PgPool`](https://docs.rs/sqlx/latest/sqlx/type.PgPool.html)       | sqlx-postgres     | `shared::Postgres`   | A shared PostgresSql instance accessed using [sqlx](https://docs.rs/sqlx)                          | [GitHub](https://github.com/getsynth/shuttle/tree/main/examples/rocket/postgres) |
-/// | [`MySqlPool`](https://docs.rs/sqlx/latest/sqlx/type.MySqlPool.html) | sqlx-aws-mariadb  | `aws::rds::MariaDB`  | An AWS RDS MariaDB instance tied to your instance and accessed using [sqlx](https://docs.rs/sqlx)  |                                                                                  |
-/// | [`MySqlPool`](https://docs.rs/sqlx/latest/sqlx/type.MySqlPool.html) | sqlx-aws-mysql    | `aws::rds::MySql`    | An AWS RDS MySql instance tied to your instance and accessed using [sqlx](https://docs.rs/sqlx)    |                                                                                  |
-/// | [`PgPool`](https://docs.rs/sqlx/latest/sqlx/type.PgPool.html)       | sqlx-aws-postgres | `aws::rds::Postgres` | An AWS RDS Postgres instance tied to your instance and accessed using [sqlx](https://docs.rs/sqlx) | [GitHub](https://github.com/getsynth/shuttle/tree/main/examples/tide/postgres)   |
+/// | Argument type                                                       | Feature flag      | Attribute            | Dependency                                                                                         | Example                                                                            |
+/// | ------------------------------------------------------------------- | ----------------- | -------------------- | -------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+/// | [`PgPool`](https://docs.rs/sqlx/latest/sqlx/type.PgPool.html)       | sqlx-postgres     | `shared::Postgres`   | A shared PostgresSql instance accessed using [sqlx](https://docs.rs/sqlx)                          | [GitHub](https://github.com/shuttle-hq/shuttle/tree/main/examples/rocket/postgres) |
+/// | [`MySqlPool`](https://docs.rs/sqlx/latest/sqlx/type.MySqlPool.html) | sqlx-aws-mariadb  | `aws::rds::MariaDB`  | An AWS RDS MariaDB instance tied to your instance and accessed using [sqlx](https://docs.rs/sqlx)  |                                                                                    |
+/// | [`MySqlPool`](https://docs.rs/sqlx/latest/sqlx/type.MySqlPool.html) | sqlx-aws-mysql    | `aws::rds::MySql`    | An AWS RDS MySql instance tied to your instance and accessed using [sqlx](https://docs.rs/sqlx)    |                                                                                    |
+/// | [`PgPool`](https://docs.rs/sqlx/latest/sqlx/type.PgPool.html)       | sqlx-aws-postgres | `aws::rds::Postgres` | An AWS RDS Postgres instance tied to your instance and accessed using [sqlx](https://docs.rs/sqlx) | [GitHub](https://github.com/shuttle-hq/shuttle/tree/main/examples/tide/postgres)   |
 pub use shuttle_codegen::main;
 use tokio::task::JoinHandle;
 
@@ -513,5 +514,27 @@ where
         Ok(())
     }
 }
+
+#[cfg(feature = "web-actix")]
+#[async_trait]
+impl<T> Service for sync_wrapper::SyncWrapper<actix_web::App<T>>
+where
+    T: Clone + Send + Sync + 'static,
+{
+    async fn bind(mut self: Box<Self>, addr: SocketAddr) -> Result<(), error::Error> {
+        let router = self.into_inner();
+
+        actix_web::HttpServer::new(move || router)
+            .bind(&addr)?
+            .run()
+            .await
+            .map_err(error::CustomError::new)?;
+
+        Ok(())
+    }
+}
+
+#[cfg(feature = "web-actix")]
+pub type ShuttleActix = Result<sync_wrapper::SyncWrapper<actix_web::App<()>>, Error>;
 
 pub const VERSION: &str = env!("CARGO_PKG_VERSION");
