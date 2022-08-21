@@ -101,7 +101,7 @@ pub struct InitArgs {
     #[clap(long, conflicts_with_all = &["axum", "rocket", "tide", "tower", "poem"])]
     pub actix: bool,
     /// Initialize with axum framework
-    #[clap(long, conflicts_with_all = &["rocket", "tide", "tower"])]
+    #[clap(long, conflicts_with_all = &["rocket", "tide", "tower", "poem"])]
     pub axum: bool,
     /// Initialize with actix-web framework
     #[clap(long, conflicts_with_all = &["actix", "axum", "tide", "tower", "poem"])]
