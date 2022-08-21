@@ -7,6 +7,8 @@ use rocket::request::FromParam;
 use serde::de::Error as DeError;
 use serde::{Deserialize, Deserializer, Serialize};
 
+use once_cell::sync::OnceCell;
+
 /// Project names should conform to valid Host segments (or labels)
 /// as per [IETF RFC 1123](https://datatracker.ietf.org/doc/html/rfc1123).
 /// Initially we'll implement a strict subset of the IETF RFC 1123, concretely:
@@ -52,12 +54,14 @@ impl ProjectName {
         }
 
         fn is_profanity_free_and_not_reserved(hostname: &str) -> bool {
-            let reserved_words: HashSet<String> = HashSet::from(["Shuttle.rs".to_string()]);
-            let allowed_words: HashSet<String> =
-                HashSet::from(["ass".to_string(), "sex".to_string()]);
+            static INSTANCE: OnceCell<HashSet<String>> = OnceCell::new();
+            INSTANCE.get_or_init(|| HashSet::from(["Shuttle.rs".to_string()]));
 
-            let censor = Censor::Standard + Censor::Sex + Censor::Custom(reserved_words)
-                - Censor::Custom(allowed_words);
+            let censor = Censor::Standard
+                + Censor::Sex
+                + Censor::Zealous
+                + Censor::Custom(INSTANCE.get().expect("Reserved words not set").clone())
+                - "hell";
             !censor.check(hostname)
         }
 
@@ -138,7 +142,6 @@ pub mod tests {
             "UPPERCASE",
             "CamelCase",
             "pascalCase",
-            "myassets",
         ] {
             let project_name = ProjectName::from_str(hostname);
             assert!(project_name.is_ok(), "{:?} was err", hostname);
@@ -159,7 +162,7 @@ pub mod tests {
             "__dunder_like__",
             "__invalid",
             "invalid__",
-            "test-condom-condom",
+            "test-crap-crap",
             "shuttle.rs",
         ] {
             let project_name = ProjectName::from_str(hostname);
