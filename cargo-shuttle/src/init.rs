@@ -32,7 +32,7 @@ impl ShuttleInit for ShuttleInitActix {
         get_dependency_version_fn: GetDependencyVersionFn,
     ) {
         set_key_value_dependency_version(
-            "actix-web",
+            "actix",
             dependencies,
             manifest_path,
             url,
